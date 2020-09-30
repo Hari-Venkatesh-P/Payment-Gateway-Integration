@@ -10,8 +10,6 @@ const mkey = paytmutils.paytmCredentials.mkey
 const paytmURL = paytmutils.paytmURL
 
 async function initiatePaymentRequest (req, res) {
-    console.log(req.body)
-    console.log(paytmutils.paytmCredentials)
     try {
         const {orderId , amount , custId , mobile } = req.body
         if(typeof orderId == 'undefined' || typeof amount == 'undefined' ||  typeof custId == 'undefined' ||  typeof mobile == 'undefined'){
@@ -38,10 +36,6 @@ async function initiatePaymentRequest (req, res) {
 
             var temp = await PaytmChecksum.generateSignature(JSON.stringify(body), mkey)
             
-            console.log(JSON.stringify(body))
-
-            console.log(temp)
-
             var head = {
                 version:"v1",
                 channelId:"WEB",
